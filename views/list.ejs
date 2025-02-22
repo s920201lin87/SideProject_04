@@ -9,31 +9,27 @@
 <body>
     <div class="container">
         <h2>記帳本</h2>
-        <div class="record expense">
-            <div class="record-header">
-                <span>2025-02-21</span>
+        
+        <% accounts.forEach(item => { %>
+            <div class="record <%= item.type === '-1' ? 'expense' : 'income' %>">
+                <div class="record-header">
+                    <span><%= item.time %></span>
+                </div>
+                <div class="record-body">
+                    <span><%= item.title %></span>
+                </div>
+                <div class="record-footer">
+                    <span class="badge"><%= item.type === '-1' ? '支出' : '收入' %></span>
+                    <span><%= item.account %> 元</span>
+                    <a href="/account/<%= item.id %>">
+                        <span class="delete-btn">❌</span>
+
+                    </a>
+                    
+                </div>
             </div>
-            <div class="record-body">
-                一支穿雲箭,千軍萬馬來相見
-            </div>
-            <div class="record-footer">
-                <span class="badge">支出</span>
-                <span>25 元</span>
-                <span class="delete-btn">❌</span>
-            </div>
-        </div>
-        <div class="record income">
-            <div class="record-header">
-                <span>2025-01-15</span>
-            </div>
-            <div class="record-body">
-                3 月份發工資
-            </div>
-            <div class="record-footer">
-                <span class="badge">收入</span>
-                <span>0 元</span>
-            </div>
-        </div>
+        <% }) %>
+
     </div>
 </body>
 </html>
