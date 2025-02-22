@@ -8,5 +8,9 @@ router.get('/account', function(req, res, next) {
 router.get('/account/create',(req,res,next)=>{
   res.render('create')
 })
-
+router.post('/account',(req,res)=>{
+  console.log(req.body);
+  console.log(req.header)
+  res.send('加入紀錄');
+});
 module.exports = router;
