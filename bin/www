@@ -4,11 +4,14 @@
  * Module dependencies.
  */
 
-var app = require('../app');
-var debug = require('debug')('accounts:server');
-var http = require('http');
+const app = require('../app');
+const debug = require('debug')('accounts:server');
+const http = require('http');
+const db = require('../db/db')
 
-/**
+
+db(()=>{
+  /**
  * Get port from environment and store in Express.
  */
 
@@ -88,3 +91,6 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+});
+

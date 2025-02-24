@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <h2>記帳本</h2>
+        <h2><a href="/account/create">點擊加入</a></h2>
         
         <% accounts.forEach(item => { %>
-            <div class="record <%= item.type === '-1' ? 'expense' : 'income' %>">
+            <div class="record <%= item.type === -1 ? 'expense' : 'income' %>">
                 <div class="record-header">
-                    <span><%= item.time %></span>
+                    <span><%= moment(item.time).format( 'YYYY-MM-DD') %></span>
                 </div>
                 <div class="record-body">
                     <span><%= item.title %></span>
@@ -22,7 +23,7 @@
                     <span class="badge"><%= item.type === '-1' ? '支出' : '收入' %></span>
                     <span><%= item.account %> 元</span>
                     <a href="/account/<%= item.id %>">
-                        <span class="delete-btn">❌</span>
+                        <span class="deletebtn">❌</span>
 
                     </a>
                     
@@ -32,4 +33,18 @@
 
     </div>
 </body>
+<script>
+    let deletebtn = document.querySelectorAll('.deletebtn');
+    deletebtn.forEach(item=>{
+        item.addEventListener('click',function(e){
+            if(confirm('確定要刪除嗎')){
+                return true;
+            }else{
+                e.preventDefault();
+
+            }
+                
+        })
+    })
+</script>
 </html>
