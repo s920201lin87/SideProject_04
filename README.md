@@ -23,14 +23,15 @@
   - 專案當前以「（Callback）」的方式進行非同步操作，尚未採用 `async/await` 或 `Promise` 進行重構  
   - 未來會持續優化改寫，提升程式可讀性與維護性  
 
----account.js (RESTful API 路由)
-路徑：routes/api/account.js
-以 /api 作為前綴，並針對 account 進行標準的 CRUD 操作：
-GET /api/account：取得所有帳目信息 (JSON)
-GET /api/account/:id：取得指定帳目 (JSON)
-POST /api/account：新增帳目 (JSON)
-DELETE /api/account/:id：刪除帳目 (JSON)
-PATCH /api/account/:id：更新帳目 (JSON)
+#### `account.js` (RESTful API 路由)
+
+- **路徑**：`routes/api/account.js`  
+- 以 `/api` 作為前綴，並針對 `account` 進行標準的 CRUD 操作：
+  - **GET** `/api/account`：取得所有帳目信息 (JSON)
+  - **GET** `/api/account/:id`：取得指定帳目 (JSON)
+  - **POST** `/api/account`：新增帳目 (JSON)
+  - **DELETE** `/api/account/:id`：刪除帳目 (JSON)
+  - **PATCH** `/api/account/:id`：更新帳目 (JSON)
 
 
 
