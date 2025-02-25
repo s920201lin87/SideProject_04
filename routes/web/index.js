@@ -1,14 +1,14 @@
 var express = require('express');
 var router = express.Router();
 
-const low = require('lowdb')
-const FileSync = require('lowdb/adapters/FileSync')
+// const low = require('lowdb')
+// const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync(__dirname+'/../data/db.json')
-const db = low(adapter);
-const shortid = require('shortid');
+// const adapter = new FileSync(__dirname+'/../data/db.json')
+// const db = low(adapter);
+// const shortid = require('shortid');
 const moment = require('moment');
-const AccountModel = require('../models/AccountModel');
+const AccountModel = require('../../models/AccountModel');
 //test moment
 // console.log(moment('2025-02-24').toDate())
 console.log(moment(new Date()).format('YYYY-MM-DD'));
