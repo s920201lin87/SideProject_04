@@ -19,10 +19,6 @@
 - **資料儲存**：  
   - 使用 **MongoDB** 搭配 **Mongoose** 進行增刪改查  
 
-- **回呼地獄 (Callback Hell)**：  
-  - 專案當前以「（Callback）」的方式進行非同步操作，尚未採用 `async/await` 或 `Promise` 進行重構  
-  - 未來會持續優化改寫，提升程式可讀性與維護性  
-
 #### `account.js` (RESTful API 路由)
 
 - **路徑**：`routes/api/account.js`  
@@ -32,6 +28,7 @@
   - **POST** `/api/account`：新增帳目 (JSON)
   - **DELETE** `/api/account/:id`：刪除帳目 (JSON)
   - **PATCH** `/api/account/:id`：更新帳目 (JSON)
-
+  - 
+ - 未來會持續優化改寫，提升程式可讀性與維護性 
 
 
