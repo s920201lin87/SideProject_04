@@ -4,7 +4,7 @@ const router = express.Router();
 const moment = require("moment");
 const AccountModel = require("../../models/AccountModel");
 
-console.log(moment(new Date()).format("YYYY-MM-DD"));
+// console.log(moment(new Date()).format("YYYY-MM-DD"));
 
 //list
 router.get("/account", function (req, res, next) {
@@ -14,7 +14,7 @@ router.get("/account", function (req, res, next) {
         .exec((err, data) => {
             if (err) {
                 // res.status(500).send("讀取失敗");
-                res.json({
+                res.status(500).json({
                     code:"1001",
                     msg:"讀取失敗",
                     data:null
@@ -43,14 +43,14 @@ router.post("/account", (req, res) => {
         },
         (err, data) => {
             if (err) {
-                res.json({
+                res.status(500).json({
                     code:"1002",
                     msg:"新增錯誤",
                     data:null
                 })
                 return;
             }
-            res.json({
+            res.status(200).json({
                 code:"0000",
                 msg:"新增成功",
                 data:data     
@@ -65,14 +65,14 @@ router.delete("/account/:id", (req, res) => {
     // db.get('accounts').remove({id:id}).write();
     AccountModel.deleteOne({ _id: id }, (err, data) => {
         if (err) {
-            res.json({
+            res.status(500).json({
                 code:"1003",
                 msg:"刪除失敗",
                 data:null
             })
             return;
         }
-        res.json({
+        res.status(200).json({
             code:"0000",
             msg:"刪除成功",
             data:{}
@@ -85,7 +85,7 @@ router.get('/account/:id',(req,res) => {
     let {id} = req.params;
     AccountModel.findById(id,(err,data)=>{
         if(err){
-            return res.json({
+            return res.status(500).json({
                 code:"1004",
                 msg:"讀取失敗",
                 data:null
@@ -93,7 +93,7 @@ router.get('/account/:id',(req,res) => {
             
         }
         
-        res.json({
+        res.status(200).json({
             code:"0000",
             msg:"成功讀取",
             data:data
@@ -106,7 +106,7 @@ router.patch("/account/:id",(req,res) => {
     let {id} = req.params;
     AccountModel.updateOne({_id: id},req.body,(err,data)=>{
         if(err){
-            return res.json({
+            return res.status(500).json({
                 code:"1005",
                 msg:"更新失敗",
                 data:null
@@ -114,14 +114,14 @@ router.patch("/account/:id",(req,res) => {
         }
         AccountModel.findById(id,(err,data)=>{
             if(err){
-                return res.json({
+                return res.status(500).json({
                     code:"1004",
                     msg:"讀取失敗",
                     data:null
                 })
                 
             }
-            res.json({
+            res.status(200).json({
                 code:"0000",
                 msg:"成功更新",
                 data:data

@@ -11,7 +11,7 @@ const moment = require('moment');
 const AccountModel = require('../../models/AccountModel');
 //test moment
 // console.log(moment('2025-02-24').toDate())
-console.log(moment(new Date()).format('YYYY-MM-DD'));
+// console.log(moment(new Date()).format('YYYY-MM-DD'));
 
 
 router.get('/account', function(req, res, next) {
