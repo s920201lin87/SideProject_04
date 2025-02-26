@@ -1,41 +1,37 @@
-var express = require('express');
-var router = express.Router();
-
-// const low = require('lowdb')
-// const FileSync = require('lowdb/adapters/FileSync')
-
-// const adapter = new FileSync(__dirname+'/../data/db.json')
-// const db = low(adapter);
-// const shortid = require('shortid');
+const express = require('express');
+const router = express.Router();
 const moment = require('moment');
 const AccountModel = require('../../models/AccountModel');
-//test moment
-// console.log(moment('2025-02-24').toDate())
-// console.log(moment(new Date()).format('YYYY-MM-DD'));
+//導入middleware
+const checkLoginMiddleware = require('../../middlewares/checkLoginMiddleware');
 
 
-router.get('/account', function(req, res, next) {
+router.get('/',(req,res)=>{
+  res.redirect('/account')
+
+})
+
+
+router.get('/account',checkLoginMiddleware, function(req, res, next) {
+
   // let accounts= db.get('accounts').value();
   AccountModel.find().sort({time:-1}).exec((err,data)=>{
     if(err){
       res.status(500).send('讀取失敗');
       return;
     }
-    console.log(data)
+    
     res.render('list',{accounts:data,moment:moment});  
   })
   
 });
 
-router.get('/account/create',(req,res,next)=>{
+router.get('/account/create',checkLoginMiddleware,(req,res,next)=>{
   res.render('create')
 });
 
-router.post('/account',(req,res)=>{
-  // let id = shortid.generate();
-  // db.get('accounts').unshift({id:id,...req.body}).write();
-  // console.log(req.body)
-  //插入資料庫
+router.post('/account',checkLoginMiddleware,(req,res)=>{
+  
   AccountModel.create({
     ...req.body,
     time:moment(req.body.time).toDate()
@@ -49,7 +45,7 @@ router.post('/account',(req,res)=>{
   
 });
 
-router.get('/account/:id',(req,res)=>{
+router.get('/account/:id',checkLoginMiddleware,(req,res)=>{
   let id = req.params.id;
   // db.get('accounts').remove({id:id}).write();
   AccountModel.deleteOne({_id:id},(err,data)=>{

@@ -8,9 +8,13 @@
 </head>
 <body>
     <div class="container">
-        <h2>記帳本</h2>
-        <h2><a href="/account/create">點擊加入</a></h2>
+        <h1>記帳本</h1>
         
+        <h2>
+            <a href="/account/create">
+                <button type="button" >點擊加入</button>
+            </a>
+        </h2>
         <% accounts.forEach(item => { %>
             <div class="record <%= item.type === -1 ? 'expense' : 'income' %>">
                 <div class="record-header">
@@ -30,6 +34,12 @@
                 </div>
             </div>
         <% }) %>
+        <h2>
+            <form action="/logout" method="post">
+                <button class="logout-btn">登出</button>
+            </form>
+            
+        </h2>
 
     </div>
 </body>
