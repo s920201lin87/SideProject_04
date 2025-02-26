@@ -6,29 +6,37 @@
 
 ## 🚀 功能特色
 
-- **Web 介面**：  
-  - **新增記帳**、刪除記帳、查詢帳目列表  
-  - 透過 **EJS** 模板引擎呈現前端頁面  
-  - 資料時間格式化採用 **Moment.js**  
+### 📌 1. Web 介面
+- **會員註冊 / 登入 / 登出**
+- **記帳管理**（新增記帳、刪除記帳、查詢帳目）
+- **Session & Cookie 管理**（使用者登入後維持狀態）
+- **使用 `EJS` 模板引擎**
+- **`Moment.js` 格式化時間**
 
-- **RESTful API**：  
-  - 提供標準 CRUD 介面供前後端或其他服務串接  
-  - 使用 `JSON` 格式傳遞與接收資料  
-  - 端點路由以 `/api/account` 為主  
+### 📌 2. RESTful API
+- **提供標準 CRUD 介面**
+- **回應 JSON 格式**
+- **路由前綴為 `/api/account`**
+  - **GET** `/api/account`：取得所有帳目
+  - **GET** `/api/account/:id`：取得指定帳目
+  - **POST** `/api/account`：新增帳目
+  - **DELETE** `/api/account/:id`：刪除帳目
+  - **PATCH** `/api/account/:id`：更新帳目
 
-- **資料儲存**：  
-  - 使用 **MongoDB** 搭配 **Mongoose** 進行增刪改查  
+### 📌 3. 資料儲存
+- **使用 `MongoDB` 搭配 `Mongoose` 進行增刪改查**
+- **使用 `connect-mongo` 儲存 `Session` 到 MongoDB**
+- **密碼加密：使用 `MD5` 進行加密**
 
-#### `account.js` (RESTful API 路由)
-
-- **路徑**：`routes/api/account.js`  
-- 以 `/api` 作為前綴，並針對 `account` 進行標準的 CRUD 操作：
-  - **GET** `/api/account`：取得所有帳目信息 (JSON)
-  - **GET** `/api/account/:id`：取得指定帳目 (JSON)
-  - **POST** `/api/account`：新增帳目 (JSON)
-  - **DELETE** `/api/account/:id`：刪除帳目 (JSON)
-  - **PATCH** `/api/account/:id`：更新帳目 (JSON)
-  - 
- - 未來會持續優化改寫，提升程式可讀性與維護性 
+### 📌 4. 安全性
+- **防止跨站請求偽造（CSRF）**
+- **所有重要請求皆透過 `POST` 進行**
+- **使用 `Session` 進行身份驗證**
+  
+## 📌 未來規劃
+- ✅ **帳號角色權限管理**
+- ✅ **加入 JWT 來強化身份驗證**
+- ✅ **支援 OAuth（Google、Facebook 登入）**
+- ✅ **增加更完整的 API 文件（Swagger）**
 
 
