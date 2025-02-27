@@ -7,6 +7,7 @@ const session = require('express-session');
 const indexRouter = require('./routes/web/index');
 const accountRouter = require('./routes/api/account')
 const authRouter = require('./routes/web/auth')
+const authApiRouter = require('./routes/api/auth')
 
 
 const MongoStore = require('connect-mongo');
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/api',accountRouter);
+app.use('/api',authApiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

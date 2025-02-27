@@ -1,28 +1,37 @@
 const express = require("express");
+
+//導入midlleware
+const checkTokenMiddleware = require('../../middlewares/checkTokenMiddleware')
+
 const router = express.Router();
+const jwt =require('jsonwebtoken')
 const moment = require("moment");
 const AccountModel = require("../../models/AccountModel");
 
+
+
 // 取得帳號資料列表
-router.get("/account", async (req, res) => {
-    try {
-        const data = await AccountModel.find().sort({ time: -1 }).exec();
+router.get("/account", checkTokenMiddleware,async (req, res) => {
+    AccountModel.find().sort({ time: -1 }).exec((err, data) => {
+        if (err) {
+            return res.status(500).json({
+                code: "1001",
+                msg: "讀取失敗",
+                data: null
+            });
+        }
         res.json({
             code: "0000",
             msg: "讀取成功",
             data: data
         });
-    } catch (err) {
-        res.status(500).json({
-            code: "1001",
-            msg: "讀取失敗",
-            data: null
-        });
-    }
+    });
+
+    
 });
 
 // 新增帳號資料
-router.post("/account", async (req, res) => {
+router.post("/account", checkTokenMiddleware,async (req, res) => {
     try {
         const data = await AccountModel.create({
             ...req.body,
@@ -43,7 +52,7 @@ router.post("/account", async (req, res) => {
 });
 
 // 刪除指定 id 的帳號資料
-router.delete("/account/:id", async (req, res) => {
+router.delete("/account/:id",checkTokenMiddleware, async (req, res) => {
     const { id } = req.params;
     try {
         await AccountModel.deleteOne({ _id: id });
@@ -62,7 +71,7 @@ router.delete("/account/:id", async (req, res) => {
 });
 
 // 取得指定 id 的帳號資料
-router.get("/account/:id", async (req, res) => {
+router.get("/account/:id",checkTokenMiddleware, async (req, res) => {
     const { id } = req.params;
     try {
         const data = await AccountModel.findById(id).exec();
@@ -88,7 +97,7 @@ router.get("/account/:id", async (req, res) => {
 });
 
 // 更新指定 id 的帳號資料
-router.patch("/account/:id", async (req, res) => {
+router.patch("/account/:id", checkTokenMiddleware,async (req, res) => {
     const { id } = req.params;
     try {
         await AccountModel.updateOne({ _id: id }, req.body);
