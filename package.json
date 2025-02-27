@@ -20,5 +20,10 @@
     "mongoose": "^6.11.4",
     "morgan": "~1.9.1",
     "shortid": "^2.2.17"
-  }
+  },
+  "description": "這是一個基於 **Node.js + Express + MongoDB** 的記帳系統，使用者可以透過網頁進行 **新增、刪除、查詢** 收支帳目，並同時提供 **RESTful API** 介面以便與前端或其他服務整合。",
+  "main": "app.js",
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
 }
