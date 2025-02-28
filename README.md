@@ -38,5 +38,7 @@
 - ✅ **帳號角色權限管理**
 - ✅ **支援 OAuth（Google、Facebook 登入）**
 - ✅ **增加更完整的 API 文件（Swagger）**
-
+**login**
+  - username:admin -
+  - password:admin -
 
